@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Mwinda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#276EF1',
+                        secondary: '#171717',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar Fixe -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold">Mwinda</a>
+                </div>
+    
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link hover:text-blue-600 transition">Accueil</a>
+                    <a href="about.html" class="nav-link hover:text-blue-600 transition">À propos</a>
+                    <a href="contact.html" class="nav-link hover:text-blue-600 transition">Contact</a>
+                    <a href="historique.html" class="nav-link hover:text-blue-600 transition">Historique</a>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+                        Réserver
+                    </button>
+                </div>
+    
+                <!-- Menu Mobile -->
+                <button class="md:hidden" onclick="toggleMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="index.html" class="block py-2 hover:text-blue-600">Accueil</a>
+                <a href="about.html" class="block py-2 hover:text-blue-600">À propos</a>
+                <a href="contact.html" class="block py-2 hover:text-blue-600">Contact</a>
+                <a href="historique.html" class="block py-2 hover:text-blue-600">Historique</a>
+                <button class="w-full bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition">
+                    Réserver
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Formulaire de Réservation -->
+    <main class="pt-24 pb-16 px-4">
+        <div class="max-w-lg mx-auto">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-center mb-8">Réserver votre course</h1>
+
+                <form id="bookingForm" class="space-y-6">
+                    <!-- Départ et Destination -->
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <i class="fas fa-map-marker-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" 
+                                   placeholder="Point de départ"
+                                   class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 
+                                          focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+
+                        <div class="relative">
+                            <i class="fas fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" 
+                                   placeholder="Destination"
+                                   class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 
+                                          focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+                    </div>
+
+                    <!-- Type de Véhicule -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" 
+                                class="flex flex-col items-center p-4 rounded-lg border-2 border-primary 
+                                       bg-blue-50 text-primary">
+                            <i class="fas fa-car text-2xl mb-2"></i>
+                            <span>Voiture</span>
+                        </button>
+                        <button type="button" 
+                                class="flex flex-col items-center p-4 rounded-lg border-2 border-gray-200 
+                                       hover:border-primary hover:bg-blue-50 hover:text-primary transition">
+                            <i class="fas fa-motorcycle text-2xl mb-2"></i>
+                            <span>Moto</span>
+                        </button>
+                    </div>
+
+                    <!-- Informations Personnelles -->
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" 
+                                   placeholder="Nom complet"
+                                   class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 
+                                          focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+
+                        <div class="relative">
+                            <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input type="tel" 
+                                   placeholder="Numéro de téléphone"
+                                   class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 
+                                          focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+                    </div>
+
+                    <!-- Bouton de Soumission -->
+                    <button type="submit" 
+                            class="w-full bg-primary text-white py-4 rounded-lg text-lg font-medium
+                                   hover:bg-blue-600 transform transition hover:scale-[1.02]">
+                        Confirmer la réservation
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Votre réservation a été enregistrée !');
+        });
+    </script>
+</body>
+</html>
